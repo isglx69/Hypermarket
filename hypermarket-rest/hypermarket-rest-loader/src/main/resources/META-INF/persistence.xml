@@ -8,6 +8,8 @@
         <!--<class>ro.sda.hypermarket.commons.security.entity.User</class>-->
         <!--<class>ro.sda.hypermarket.commons.security.entity.Authority</class>-->
         <class>ro.sda.hypermarket.core.entity.Supplier</class>
+        <class>ro.sda.hypermarket.core.entity.Employee</class>
+        <class>ro.sda.hypermarket.core.entity.Department</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
