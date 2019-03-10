@@ -13,8 +13,9 @@
         <class>ro.sda.hypermarket.core.entity.Product</class>
         <class>ro.sda.hypermarket.core.entity.ProductCategories</class>
         <class>ro.sda.hypermarket.core.entity.Client</class>
+        <class>ro.sda.hypermarket.core.entity.Sale</class>
+        <class>ro.sda.hypermarket.core.entity.SaleProduct</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
-
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
