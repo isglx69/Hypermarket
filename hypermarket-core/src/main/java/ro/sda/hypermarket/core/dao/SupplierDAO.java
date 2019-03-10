@@ -10,3 +10,5 @@ public interface SupplierDAO {
     public Supplier updateSupplier(Supplier supplier);
     public void deleteSupplier(Supplier supplier);
 }
+
+// Test
