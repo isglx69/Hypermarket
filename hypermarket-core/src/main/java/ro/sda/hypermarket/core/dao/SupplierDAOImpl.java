@@ -4,17 +4,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ro.sda.hypermarket.core.entity.Supplier;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Repository
+@Transactional
 public class SupplierDAOImpl implements SupplierDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public addSupplier(Supplier object) {
+    public Supplier addSupplier(Supplier object) {
         sessionFactory.getCurrentSession().save(object);
         return object;
     }
@@ -44,9 +48,10 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
     @Override
-    public void deleteSupplier(Supplier object) {}
+    public void deleteSupplier(Supplier object) {
         sessionFactory.getCurrentSession().delete(object);
         sessionFactory.getCurrentSession().flush();
+        return;
     }
 }
 
