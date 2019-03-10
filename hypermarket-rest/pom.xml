@@ -16,6 +16,14 @@
         <module>hypermarket-rest-core</module>
         <module>hypermarket-rest-loader</module>
     </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.3.19.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <resteasy.version>3.0.16.Final</resteasy.version>

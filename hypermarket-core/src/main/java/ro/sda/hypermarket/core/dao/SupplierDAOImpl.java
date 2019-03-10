@@ -14,8 +14,9 @@ public class SupplierDAOImpl implements SupplierDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public addSupplier(Supplier supplier) {
-
+    public addSupplier(Supplier object) {
+        sessionFactory.getCurrentSession().save(object);
+        return object;
     }
 
     @Override
