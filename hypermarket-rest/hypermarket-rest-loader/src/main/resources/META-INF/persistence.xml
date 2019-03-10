@@ -12,6 +12,7 @@
         <class>ro.sda.hypermarket.core.entity.Department</class>
         <class>ro.sda.hypermarket.core.entity.Product</class>
         <class>ro.sda.hypermarket.core.entity.ProductCategories</class>
+        <class>ro.sda.hypermarket.core.entity.Client</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
