@@ -1,6 +1,7 @@
 package ro.sda.hypermarket.core.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -16,12 +17,13 @@ public class Sale {
     private String invoiceNo;
 
     @Column(name = "sale_date", nullable = false)
-    private String saleDate;
+    private Date saleDate;
 
-    @Column(name = "client_id", nullable = false)
-    private Long clientId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="client_id")
+    private Client clientId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "employee_id", nullable = false)
     private Employee employeeId;
 
@@ -41,28 +43,28 @@ public class Sale {
         this.invoiceNo = invoiceNo;
     }
 
-    public String getSaleDate() {
+    public Date getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(String saleDate) {
+    public void setSaleDate(Date saleDate) {
         this.saleDate = saleDate;
     }
 
-    public Long getClientId() {
+    public Client getClientId() {
         return clientId;
     }
 
-    public void setClientId(Long clientId) {
+    public void setClientId(Client clientId) {
         this.clientId = clientId;
     }
 
-    public Employee getEmployerId() {
-        return employerId;
+    public Employee getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployerId(Employee employerId) {
-        this.employerId = employerId;
+    public void setEmployeeId(Employee employeeId) {
+        this.employeeId = employeeId;
     }
 
     @Override
@@ -74,11 +76,11 @@ public class Sale {
                 Objects.equals(invoiceNo, sale.invoiceNo) &&
                 Objects.equals(saleDate, sale.saleDate) &&
                 Objects.equals(clientId, sale.clientId) &&
-                Objects.equals(employerId, sale.employerId);
+                Objects.equals(employeeId, sale.employeeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, invoiceNo, saleDate, clientId, employerId);
+        return Objects.hash(id, invoiceNo, saleDate, clientId, employeeId);
     }
 }
