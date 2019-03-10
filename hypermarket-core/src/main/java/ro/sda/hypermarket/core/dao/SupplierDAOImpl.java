@@ -35,15 +35,15 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
     @Override
-    public Supplier updateSupplier(Long id) {
-        id = (Long) sessionFactory.getCurrentSession().save(object);
+    public Supplier updateSupplier(Supplier object) {
+        Long id = (Long) sessionFactory.getCurrentSession().save(object);
         sessionFactory.getCurrentSession().save(object);
         sessionFactory.getCurrentSession().flush();
         return getSupplierById(id);
     }
 
     @Override
-    public void deleteSupplier(Long id) {}
+    public void deleteSupplier(Supplier object) {}
         sessionFactory.getCurrentSession().delete(object);
         sessionFactory.getCurrentSession().flush();
     }
