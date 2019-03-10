@@ -2,6 +2,7 @@ package ro.sda.hypermarket.core.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "sale_product", schema = "hypermarket")
@@ -12,16 +13,15 @@ public class SaleProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product pruductId;
+    @OneToMany(mappedBy = "product")
+    private Set<Product> products;
 
     @Column(name = "quantity", nullable = false)
     private double quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "sale_id", nullable = false);
-    private Sale saleId;
+    @OneToOne
+    @JoinColumn(name="sale_id",nullable=false)
+    private Sale sale;
 
     public Long getId() {
         return id;
@@ -31,12 +31,12 @@ public class SaleProduct {
         this.id = id;
     }
 
-    public Product getPruductId() {
-        return pruductId;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void setPruductId(Product pruductId) {
-        this.pruductId = pruductId;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     public double getQuantity() {
@@ -47,12 +47,12 @@ public class SaleProduct {
         this.quantity = quantity;
     }
 
-    public Sale getSaleId() {
-        return saleId;
+    public Sale getSale() {
+        return sale;
     }
 
-    public void setSaleId(Sale saleId) {
-        this.saleId = saleId;
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 
     @Override
@@ -62,12 +62,12 @@ public class SaleProduct {
         SaleProduct that = (SaleProduct) o;
         return Double.compare(that.quantity, quantity) == 0 &&
                 Objects.equals(id, that.id) &&
-                Objects.equals(pruductId, that.pruductId) &&
-                Objects.equals(saleId, that.saleId);
+                Objects.equals(products, that.products) &&
+                Objects.equals(sale, that.sale);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pruductId, quantity, saleId);
+        return Objects.hash(id, products, quantity, sale);
     }
 }
