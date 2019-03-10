@@ -13,8 +13,9 @@ public class SaleProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "product")
-    private Set<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
     @Column(name = "quantity", nullable = false)
     private double quantity;
@@ -31,12 +32,12 @@ public class SaleProduct {
         this.id = id;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public double getQuantity() {
@@ -62,12 +63,12 @@ public class SaleProduct {
         SaleProduct that = (SaleProduct) o;
         return Double.compare(that.quantity, quantity) == 0 &&
                 Objects.equals(id, that.id) &&
-                Objects.equals(products, that.products) &&
+                Objects.equals(product, that.product) &&
                 Objects.equals(sale, that.sale);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, products, quantity, sale);
+        return Objects.hash(id, product, quantity, sale);
     }
 }

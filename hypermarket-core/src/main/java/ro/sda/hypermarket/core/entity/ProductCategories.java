@@ -14,8 +14,9 @@ public class ProductCategories {
     @Column(name="name",length = 40,nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @OneToOne
     @JoinColumn(name = "manager_id", nullable = false)
@@ -37,12 +38,12 @@ public class ProductCategories {
         this.name = name;
     }
 
-    public Set<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProducts(Set<Product> products) {
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Employee getManager() {
@@ -60,12 +61,12 @@ public class ProductCategories {
         ProductCategories that = (ProductCategories) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
-                Objects.equals(products, that.products) &&
+                Objects.equals(product, that.product) &&
                 Objects.equals(manager, that.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, products, manager);
+        return Objects.hash(id, name, product, manager);
     }
 }

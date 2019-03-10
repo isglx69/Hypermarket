@@ -3,6 +3,7 @@ package ro.sda.hypermarket.core.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="products",schema = "hypermarket")
@@ -32,6 +33,9 @@ public class Product {
 
     @Column(name="vending_price", nullable = true)
     private Long vending_price;
+
+    @OneToMany(mappedBy = "product")
+    private Set<SaleProduct> saleProduct;
 
     public Long getId() {
         return id;
