@@ -26,6 +26,12 @@ public class SupplierDAOTest {
         supplier.setContactNo("0755111222");
         supplier.setCity("IASI");
         supplierDAO.addSupplier(supplier);
+
+        Supplier supplier2 = new Supplier();
+        supplier2.setName("Vasile");
+        supplier2.setContactNo("0755333444");
+        supplier2.setCity("BUCURESTI");
+        supplierDAO.addSupplier(supplier);
     }
 
     @Test
@@ -34,10 +40,11 @@ public class SupplierDAOTest {
         System.out.println(allSuppliers);
     }
 
-}
+    @Test
+    public void testDeleteSupplier() {
+        Long foundId = 2L;
+        Supplier supplier = supplierDAO.getSupplierById(foundId);
+        supplierDAO.deleteSupplier(supplier);
+    }
 
-//    @Test
-//    public void findById(int supplierId){
-//        Supplier supplier = new Supplier();
-//        supplier.getId();
-//    }
+}

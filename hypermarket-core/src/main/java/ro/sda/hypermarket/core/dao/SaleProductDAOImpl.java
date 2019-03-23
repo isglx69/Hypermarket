@@ -6,27 +6,28 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ro.sda.hypermarket.core.entity.Supplier;
+import ro.sda.hypermarket.core.entity.SaleProduct;
+
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 @Transactional
-public class SupplierDAOImpl implements SupplierDAO {
+public class SaleProductDAOImpl implements SaleProductDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public Supplier addSupplier(Supplier object) {
+    public SaleProduct addSaleProduct(SaleProduct object) {
         sessionFactory.getCurrentSession().save(object);
         return object;
     }
 
     @Override
-    public Supplier getSupplierById(Long id) {
+    public SaleProduct getSaleProductById(Long id) {
         Criterion byId = Restrictions.idEq(id);
-        List<Supplier> allResults = sessionFactory.getCurrentSession().createCriteria(Supplier.class).add(byId).list();
+        List<SaleProduct> allResults = sessionFactory.getCurrentSession().createCriteria(SaleProduct.class).add(byId).list();
         if(allResults.size() > 0) {
             return allResults.get(0);
         } else {
@@ -35,27 +36,25 @@ public class SupplierDAOImpl implements SupplierDAO {
     }
 
     @Override
-    public List<Supplier> getAllSuppliers() {
-        return sessionFactory.getCurrentSession().createCriteria(Supplier.class).list();
+    public List<SaleProduct> getAllSaleProducts() {
+        return sessionFactory.getCurrentSession().createCriteria(SaleProduct.class).list();
     }
 
     @Override
-    public Supplier updateSupplier(Supplier object) {
+    public SaleProduct updateSaleProduct(SaleProduct object) {
         Long id = (Long) sessionFactory.getCurrentSession().save(object);
         sessionFactory.getCurrentSession().save(object);
         sessionFactory.getCurrentSession().flush();
-        return getSupplierById(id);
+        return getSaleProductById(id);
     }
 
     @Override
-    public void deleteSupplier(Supplier supplier) {
+    public void deleteSaleProduct(SaleProduct saleProduct) {
         Transaction tr = sessionFactory.getCurrentSession().beginTransaction();
-        Supplier object = (Supplier) sessionFactory.getCurrentSession().get(Supplier.class, supplier.getId());
+        SaleProduct object = (SaleProduct) sessionFactory.getCurrentSession().get(SaleProduct.class, saleProduct.getId());
         sessionFactory.getCurrentSession().delete(object);
         sessionFactory.getCurrentSession().flush();
         tr.commit();
     }
 }
-
-
 
