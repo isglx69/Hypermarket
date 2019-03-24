@@ -42,11 +42,11 @@ public class SupplierDAOImpl implements SupplierDAO {
     @Override
     public Supplier updateSupplier(Supplier object) {
         Transaction tr = sessionFactory.getCurrentSession().beginTransaction();
-        Supplier supplier = getSupplierById((supplier.getId()))
+        Supplier supplier = getSupplierById(object.getId());
         sessionFactory.getCurrentSession().merge(object);
         sessionFactory.getCurrentSession().flush();
         tr.commit();
-        return getSupplierById(id);
+        return getSupplierById(object.getId());
     }
 
     @Override
