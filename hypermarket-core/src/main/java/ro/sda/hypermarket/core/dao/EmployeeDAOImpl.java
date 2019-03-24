@@ -6,7 +6,9 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ro.sda.hypermarket.core.entity.Client;
 import ro.sda.hypermarket.core.entity.Employee;
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public Employee getEmployeeById(Long id) {
         Criterion byId = Restrictions.idEq(id);
-        List<Employee> allResults = sessionFactory.getCurrentSession().createCriteria(Employee.class).add(byId).list();
+        List<Client> allResults = sessionFactory.getCurrentSession().createCriteria(Client.class).add(byId).list();
         if (allResults.size() > 0) {
             return allResults.get(0);
         } else {
@@ -36,7 +38,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public List<Employee> getAllEmployees() {
-        return sessionFactory.getCurrentSession().createCriteria(Employee.class).list();
+        return sessionFactory.getCurrentSession().createCriteria(Client.class).list();
     }
 
     @Override
@@ -50,7 +52,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void deleteEmployee(Employee employee) {
         Transaction tr = sessionFactory.getCurrentSession().beginTransaction();
-        Employee object = (Employee) sessionFactory.getCurrentSession().get(Employee.class, employee.getId());
+        Client object = (Client) sessionFactory.getCurrentSession().get(Client.class, employee.getId());
         sessionFactory.getCurrentSession().delete(object);
         sessionFactory.getCurrentSession().flush();
         tr.commit();

@@ -44,6 +44,6 @@ public class SupplierServiceImpl implements SupplierService{
 
     @Override
     public void deleteSupplier(Supplier supplier) {
-    supplierDAO.deleteSupplier(supplier);
+        supplierDAO.deleteSupplier(supplier);
     }
 }

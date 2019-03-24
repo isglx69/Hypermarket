@@ -23,7 +23,7 @@ public class Sale extends BaseEntity {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "employee_id", nullable = false)
-    private Employee employeeId;
+    private Client employeeId;
 
     public String getInvoiceNo() {
         return invoiceNo;
@@ -49,11 +49,11 @@ public class Sale extends BaseEntity {
         this.clientId = clientId;
     }
 
-    public Employee getEmployeeId() {
+    public Client getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Employee employeeId) {
+    public void setEmployeeId(Client employeeId) {
         this.employeeId = employeeId;
     }
 

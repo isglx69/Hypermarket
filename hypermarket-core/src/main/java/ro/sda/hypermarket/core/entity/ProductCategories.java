@@ -4,7 +4,6 @@ import ro.sda.hypermarket.core.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name="prod_categories",schema="hypermarket")
@@ -19,7 +18,7 @@ public class ProductCategories extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "manager_id", nullable = false)
-    private Employee manager;
+    private Client manager;
 
     public String getName() {
         return name;
@@ -37,11 +36,11 @@ public class ProductCategories extends BaseEntity {
         this.product = product;
     }
 
-    public Employee getManager() {
+    public Client getManager() {
         return manager;
     }
 
-    public void setManager(Employee manager) {
+    public void setManager(Client manager) {
         this.manager = manager;
     }
 

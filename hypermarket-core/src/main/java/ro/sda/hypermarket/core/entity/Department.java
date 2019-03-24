@@ -15,7 +15,7 @@ public class Department extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "manager_id", nullable = false)
-    private Employee manager;
+    private Client manager;
 
     public String getName() {
         return name;
@@ -25,11 +25,11 @@ public class Department extends BaseEntity {
         this.name = name;
     }
 
-    public Employee getManager() {
+    public Client getManager() {
         return manager;
     }
 
-    public void setManager(Employee manager) {
+    public void setManager(Client manager) {
         this.manager = manager;
     }
 
