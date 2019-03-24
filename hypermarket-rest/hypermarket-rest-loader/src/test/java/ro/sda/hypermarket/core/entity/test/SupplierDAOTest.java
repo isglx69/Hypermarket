@@ -31,7 +31,7 @@ public class SupplierDAOTest {
         supplier2.setName("Vasile");
         supplier2.setContactNo("0755333444");
         supplier2.setCity("BUCURESTI");
-        supplierDAO.addSupplier(supplier);
+        supplierDAO.addSupplier(supplier2);
     }
 
     @Test
@@ -47,4 +47,11 @@ public class SupplierDAOTest {
         supplierDAO.deleteSupplier(supplier);
     }
 
+    @Test
+    public void testUpdateSupplier() {
+        Long foundId = 1L;
+        Supplier supplier = supplierDAO.getSupplierById(foundId);
+        supplier.setCity("CLUJ-NAPOCA");
+        supplierDAO.updateSupplier(supplier);
+    }
 }

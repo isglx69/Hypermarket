@@ -1,16 +1,14 @@
 package ro.sda.hypermarket.core.entity;
 
+import ro.sda.hypermarket.core.base.BaseEntity;
+
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @Table(name = "departments", schema = "hypermarket")
 
-public class Department {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Department extends BaseEntity {
 
     @Column(name = "name", length = 20, nullable = false)
     private String name;
@@ -18,14 +16,6 @@ public class Department {
     @OneToOne
     @JoinColumn(name = "manager_id", nullable = false)
     private Employee manager;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -48,13 +38,13 @@ public class Department {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return Objects.equals(id, that.id) &&
+        return Objects.equals(super.getId(), that.getId()) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(manager, that.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, manager);
+        return Objects.hash(super.getId(), name, manager);
     }
 }

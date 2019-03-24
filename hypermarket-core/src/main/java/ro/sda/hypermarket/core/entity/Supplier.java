@@ -1,5 +1,7 @@
 package ro.sda.hypermarket.core.entity;
 
+import ro.sda.hypermarket.core.base.BaseEntity;
+
 import javax.persistence.*;
 import java.lang.reflect.GenericArrayType;
 import java.util.Objects;
@@ -7,11 +9,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "suppliers", schema = "hypermarket")
 
-public class Supplier {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Supplier extends BaseEntity {
 
     @Column(name = "name", length = 40, nullable = false)
     private String name;
@@ -21,14 +19,6 @@ public class Supplier {
 
     @Column(name = "city", length = 30)
     private String city;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -59,7 +49,7 @@ public class Supplier {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Supplier supplier = (Supplier) o;
-        return Objects.equals(id, supplier.id) &&
+        return Objects.equals(super.getId(), supplier.getId()) &&
                 Objects.equals(name, supplier.name) &&
                 Objects.equals(contactNo, supplier.contactNo) &&
                 Objects.equals(city, supplier.city);
@@ -67,6 +57,6 @@ public class Supplier {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, contactNo, city);
+        return Objects.hash(super.getId(), name, contactNo, city);
     }
 }

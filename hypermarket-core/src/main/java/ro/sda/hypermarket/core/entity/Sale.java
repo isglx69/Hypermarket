@@ -1,5 +1,7 @@
 package ro.sda.hypermarket.core.entity;
 
+import ro.sda.hypermarket.core.base.BaseEntity;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -7,11 +9,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "sales", schema = "hypermarket")
 
-public class Sale {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Sale extends BaseEntity {
 
     @Column(name = "invoice_no", length = 20, nullable = false)
     private String invoiceNo;
@@ -26,14 +24,6 @@ public class Sale {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "employee_id", nullable = false)
     private Employee employeeId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getInvoiceNo() {
         return invoiceNo;
@@ -72,7 +62,7 @@ public class Sale {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Sale sale = (Sale) o;
-        return Objects.equals(id, sale.id) &&
+        return Objects.equals(super.getId(), sale.getId()) &&
                 Objects.equals(invoiceNo, sale.invoiceNo) &&
                 Objects.equals(saleDate, sale.saleDate) &&
                 Objects.equals(clientId, sale.clientId) &&
@@ -81,6 +71,6 @@ public class Sale {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, invoiceNo, saleDate, clientId, employeeId);
+        return Objects.hash(super.getId(), invoiceNo, saleDate, clientId, employeeId);
     }
 }
